@@ -20,9 +20,6 @@ export default function DashboardLayout({ children }: {
     return (
       <>
         <Dashboard_Sidebar>{children}</Dashboard_Sidebar>
-        <PlayerProvider>
-          <PlayGround />
-        </PlayerProvider>
       </>
     );
 }
