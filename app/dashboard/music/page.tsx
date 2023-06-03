@@ -1,6 +1,6 @@
 'use client'
 
-import { Album } from "@prisma/client"
+import { Album } from '@prisma/client'
 import { useSession } from "next-auth/react"
 import Link from "next/link"
 import Image from 'next/image';
