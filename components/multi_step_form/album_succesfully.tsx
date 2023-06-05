@@ -1,4 +1,3 @@
-import React, { ChangeEvent, useState } from 'react';
 import Image from "next/image"
 
 type Track = {
@@ -10,7 +9,7 @@ type Track = {
 type AlbumData = {
     Name: string,
     Author: string,
-    Cover: File | undefined ,
+    Cover: any,
     ReleaseDate: string,
     Tracks: Track[]
 }
@@ -19,8 +18,7 @@ type AlbumFormProps = AlbumData & {
    UpdateFields: (fields: Partial<AlbumData>) => void
 }
 
-
-function Album_Succesfully({Name, Author, Cover, ReleaseDate, Tracks, UpdateFields} : AlbumFormProps ){
+function Album_Succesfully({Name, Author, Cover, ReleaseDate, Tracks} : AlbumFormProps ){
 
     return (
         <>

@@ -21,7 +21,6 @@ export default async function Music() {
             {userData.map((item, i) => (
               <div key={i} className="dashboard_album">
                 <Link href={`/dashboard/music/${item.id}`}>
-
                   <Image
                     className="rounded-lg"
                     src={'/ryoichi.jpg'}
@@ -36,7 +35,6 @@ export default async function Music() {
                     <p className=" text-gray-800 dark:text-indigo-500">{item.ReleaseDate}</p>
                   </div>
                 </Link>
-
               </div>
             ))}
           </div>

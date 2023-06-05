@@ -2,7 +2,7 @@
 type AlbumData = {
     Name: string,
     Author: string,
-    Cover: File | undefined ,
+    Cover: any,
     ReleaseDate: string
 }
 
@@ -11,9 +11,9 @@ type AlbumFormProps = AlbumData & {
 }
 
 
-function Album_Data ({Name, Author, Cover, ReleaseDate, UpdateFields} : AlbumFormProps ){
+function Album_Data ({Name, Author, ReleaseDate, UpdateFields} : AlbumFormProps ){
 
-    const handleCover = (value: File | undefined) => {
+    const handleCover = (value: any) => {
        UpdateFields({Cover: value})
     }
 
