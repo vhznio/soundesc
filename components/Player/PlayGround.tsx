@@ -7,7 +7,7 @@ import { usePlayer } from "./usePlayer";
 export const PlayGround = () => {
   const { playList, setCurrentMusic, currentMusic } = usePlayer();
   return (
-    <div className="w-screen h-screen overflow-auto bg-[#1e1e2f]">
+    <div className="w-full h-screen overflow-auto bg-[#1e1e2f]">
       <div className="flex flex-col max-w-lg gap-3 mx-4 md:mx-auto mt-6 mb-20">
         {playList.map((music) => {
           const isPlaying = currentMusic.src === music.src;

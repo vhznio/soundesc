@@ -31,14 +31,14 @@ const Dashboard_Header = () => {
             <div className='dashboard_header_title'>
                 <h2>{UserName}</h2>
             </div>
-            <div className='flex flex-row gap-3 lg:gap-10 items-center'>
+            <div className='flex flex-row gap-4 md:gap-5 items-center'>
                 <div onClick={handleThemeSwitch} className="dashboard_header_theme_switcher">
                     <MdOutlineLightMode className={`${theme === 'light'? '' : 'hidden'}`}/>
                     <MdLightMode className={`${theme === 'light'? 'hidden' : ''}`}/>
                 </div>
                 <div className="dashboard_header_profile_button">
                     <Link href={'/dashboard/profile_settings'}>
-                        <CgProfile size={35}/>
+                        <CgProfile size={30}/>
                     </Link>
                 </div>
             </div>

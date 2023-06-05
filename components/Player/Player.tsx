@@ -115,8 +115,8 @@ export const Player = () => {
   };
 
   return (
-    <div className="fixed w-full bottom-0">
-      <div className=" py-4 bg-indigo-950/80 backdrop-blur-2xl rounded-t-[2rem] text-white shadow-xl shadow-indigo-500">
+    <div className="fixed w-screen bottom-0">
+      <div className="w-full py-4 bg-indigo-950/80 backdrop-blur-2xl rounded-t-[2rem] text-white shadow-xl shadow-indigo-500">
         <div className="flex max-[600px]:flex-col container mx-full px-3 lg:px-3 flex justify-between">
           {/* title and thumbnail */}
           <div className="flex items-stretch lg:w-3/12 gap-4">
@@ -164,7 +164,7 @@ export const Player = () => {
             </button>
           </div>
           {/* progress */}
-          <div className=" sm:flex w-6/12 flex-col gap-1 justify-center cursor-pointer">
+          <div className=" md:flex w-6/12 flex-col gap-1 justify-center cursor-pointer hidden sm:visible">
             <Slider
               trackStyle={{ background: "rgb(126 34 206)" }}
               handleStyle={{
