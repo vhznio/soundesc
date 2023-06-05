@@ -26,9 +26,8 @@ export default async function Dashboard() {
   try {
     if(ClientSession){
       const usersData:any[] = await fetchData();
-     
       return(
-        <div className="overflow-auto bg-gradient-to-t from-gray-600 from-5% via-gray-500 to-gray-600 ">
+        <div className="overflow-auto">
           <div className="dashboard_feed_container">
             {usersData.map((item, i) => (
               <div key={i} className="dashboard_feed_post">
@@ -36,13 +35,13 @@ export default async function Dashboard() {
                   <div className="flex flex-row items-center gap-5 text-xl lg:text-2xl">
                     <Image
                         className="w-10 h-10 rounded-full object-cover"
-                        src={'/profile.jpg'}
-                        alt={item.name}
+                        src={'/etc/profile.jpg'}
+                        alt={'x'}
                         priority={true}
                         width={500}
                         height={500}
                     />
-                    <span>{item.User.name}</span>
+                    <span>{item.User.UserName}</span>
                   </div>
                   <div className="cursor-pointer ">
                     <TfiMore size={20}/>
@@ -50,15 +49,17 @@ export default async function Dashboard() {
                 </div>
                 <div className="flex justify-center items-center">
                     <Image
-                        className="object-cover"
-                        src={'/ryoichi.jpg'}
-                        alt={item.name}
+                        className="object-cover h-auto w-auto"
+                        src={item.Cover}
+                        alt={''}
                         priority={true}
                         width={550}
                         height={600}
                     />
                 </div>
-                
+                <div className="flex justify-center">
+                  <h1>{`${item.Name} by ${item.Author}`}</h1>
+                </div>
                 <div className="flex flex-row justify-between p-3 text-xl lg:text-3xl text-black">
                   <div className="flex flex-row justify-between gap-5">
                     <div>

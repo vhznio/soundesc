@@ -63,7 +63,6 @@ function Add() {
     
 
     async function onSubmit(e: FormEvent){
-        console.log(data)
         e.preventDefault()
         next()
 
@@ -74,14 +73,13 @@ function Add() {
         formData.append('Cover', data.Cover);
 
         data.Tracks.forEach((track, i) => {
-            formData.append(`${track.Name}`, track.File)
+            formData.append(track.Name, track.File)
         })
 
         fetch('/api/upload', {
             method: 'POST',
             body: formData
         })
-
     }
 
     return (

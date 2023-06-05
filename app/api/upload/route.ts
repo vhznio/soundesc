@@ -4,58 +4,75 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "../auth/[...nextauth]/route";
 import { NextApiRequest } from "next";
 
-import * as fs from 'node:fs/promises';
-import path from "node:path";
+import { promises as fs } from 'fs';
+import path from 'path';
 
-export async function POST(req: NextRequest){
-    const f:any = await req.formData()
-   
-    const obj = Object.fromEntries(f);
-    console.log(obj)
-    const Author = obj.Author;
-    const AlbumName = obj.Name;
-    const ReleaseDate = obj.ReleaseDate;
+export async function POST(req: NextRequest) {
 
-    Object.entries(obj).forEach( async ([key, value]) => {
-      
-      if(key === 'Cover'){
-      
-        const img = await value.arrayBuffer();
-        const buffer = Buffer.from(img);
-        const coverName = `${AlbumName}-${Author}`;
-        const extension = '.' + value.type.toString().split('/').pop();
+  const form:any = await req.formData();
+  const fields = Object.fromEntries(form);
+  const { Author, Name, ReleaseDate } = fields; 
 
-        const localUrl = path.resolve(path.join(process.cwd(), `public/uploads/`));
-        const authorUrl = path.resolve(path.join(localUrl, Author))  
-        const albumUrl = path.resolve(path.join(authorUrl, AlbumName ))
-        const coverUrl = path.resolve(path.join(albumUrl, coverName))
-
-        console.log(localUrl)
-        console.log(authorUrl)
-        console.log(albumUrl)
-
-        try {
-          await fs.readdir(localUrl)
-        } catch (error) {     
-          await fs.mkdir(localUrl)
-        }
-
-        try {
-          await fs.readdir(authorUrl)
-        } catch (error) {     
-          await fs.mkdir(authorUrl)
-        }
-
-        try {
-          await fs.readdir(albumUrl)
-        } catch (error) {
-          await fs.mkdir(albumUrl)
-        }
-
-        const filePath = (coverUrl + extension);
-        fs.writeFile(filePath, buffer);
+  const activeUser = await getServerSession(authOptions);
+  const id = activeUser?.user.uid;
+  const invalidData = await prisma.album.findUnique({
+      where: {
+        Name
       }
-    })
+  })
+   if(invalidData){
+    return NextResponse.json({error: "Name taken"})
+  }
 
-    return NextResponse.json({})
-  } 
+  const uploadsPath = path.join(process.cwd(), 'public/uploads');
+  const authorPath = path.join(uploadsPath, id!).replace(/\s+/g, '_');
+  const albumPath = path.join(authorPath, Name).replace(/\s+/g, '_');
+  await fs.mkdir(uploadsPath, { recursive: true });
+  await fs.mkdir(authorPath, { recursive: true });
+  await fs.mkdir(albumPath, { recursive: true });
+
+  const coverShortPath = `/uploads/${id}/${Name}/${Name}-${Author}.${fields.Cover.type.split('/').pop()}`.replace(/\s+/g, '_');
+  
+  var ALBUM_TO_POST = {
+    Name: Name,
+    Author: Author,
+    Cover: coverShortPath,
+    ReleaseDate: ReleaseDate,
+    User: {
+      connect: {
+        id
+      }
+    }
+  }
+
+
+  Object.entries(fields).forEach( async ([key, value]) => {
+    
+    if (key === 'Cover') {
+      const imageBuffer = await value.arrayBuffer();
+      const buffer = Buffer.from(imageBuffer);
+      const coverName = `${Name}-${Author}`;
+      const extension = '.' + value.type.split('/').pop();
+      const coverPath = path.join(albumPath, coverName + extension).replace(/\s+/g, '_');
+      await fs.writeFile(coverPath, buffer);
+    }
+
+    if(key !== 'Cover' && key !== 'Author' && key !== 'Name' && key !== 'ReleaseDate'){
+      const trackName = value.name.split('.').shift()
+      const extension = `.${value.name.split('.').pop()}`
+      const trackBuffer = await value.arrayBuffer();
+      const buffer = Buffer.from(trackBuffer);
+
+      const trackPath = path.join(albumPath, trackName + extension).replace(/\s+/g, '_')
+      await fs.writeFile(trackPath, buffer);
+     
+    }
+
+  })
+
+  const newAlbum = await prisma.album.create({
+    data: ALBUM_TO_POST
+  })
+  
+  return NextResponse.json(newAlbum);
+}
