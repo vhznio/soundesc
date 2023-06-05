@@ -18,7 +18,7 @@ type AlbumForm= {
 type Track = {
     Name: string;
     Tags: string;
-    File: File | undefined;
+    File: any;
 }
 
 const InitialData: AlbumForm = {
@@ -67,17 +67,19 @@ function Add() {
         e.preventDefault()
         next()
 
-        const file = data.Cover;
         const formData = new FormData();
-        formData.append('userfile', file);
-        formData.append('name', 'John Doe')
+        formData.append('Author', data.Author);
+        formData.append('Name', data.Name);
+        formData.append('ReleaseDate', data.ReleaseDate);
+        formData.append('Cover', data.Cover);
+
+        data.Tracks.forEach((track, i) => {
+            formData.append(`${track.Name}`, track.File)
+        })
 
         fetch('/api/upload', {
             method: 'POST',
-            body: formData,
-            headers:{
-                'Content-Type' : 'multipart/form-data'
-            }
+            body: formData
         })
 
     }
