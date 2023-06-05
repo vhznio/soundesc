@@ -16,7 +16,6 @@ export default async function Music() {
     if(ClientSession){
       const userData:Album[] = await fetchData(ClientSession?.user.uid as string);
 
-      console.log(userData)
       return(
         <div className="overflow-auto">
           <div className="dashboard_albums_container">
@@ -24,7 +23,7 @@ export default async function Music() {
               <div key={i} className="dashboard_album">
                 <Link href={`/dashboard/music/${item.id}`}>
                   <Image
-                    className="rounded-lg"
+                    className="rounded-lg w-auto h-auto"
                     src={item.Cover!}
                     alt={item.Name}
                     priority={true}

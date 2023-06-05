@@ -11,7 +11,7 @@ import { AiOutlineHeart, AiOutlineShopping } from "react-icons/ai";
 import { FiMusic } from "react-icons/fi";
 import { MdClose } from "react-icons/md";
 
-import Dashboard_Header from "@/components/dashboard_header";
+import Dashboard_Header from "./dashboard_header";
 import MusicPlayer from "./music_player";
 
 const Dashboard_Sidebar = ({ children }: {

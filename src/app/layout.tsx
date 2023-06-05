@@ -1,6 +1,6 @@
-import './globals.css'
-import { Share_Tech_Mono } from 'next/font/google'
+import './globals.css' 
 import React from "react";
+import { Share_Tech_Mono } from 'next/font/google'
 import { NextAuthProvider } from './providers';
 
 const tech = Share_Tech_Mono({

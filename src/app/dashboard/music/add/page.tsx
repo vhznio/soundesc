@@ -1,9 +1,9 @@
 'use client'
 
 import Step_Form_Handler from './../../../../components/multi_step_form/add_album_form';
-import Album_Data from '@/components/multi_step_form/album_data';
-import Album_Tracks from '@/components/multi_step_form/album_tracks';
-import Album_Succesfully from '@/components/multi_step_form/album_succesfully';
+import Album_Data from '@/src/components/multi_step_form/album_data';
+import Album_Tracks from '@/src/components/multi_step_form/album_tracks';
+import Album_Succesfully from '@/src/components/multi_step_form/album_succesfully';
 import { FormEvent, useState } from 'react';
 
 

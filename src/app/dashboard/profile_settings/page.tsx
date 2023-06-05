@@ -1,4 +1,4 @@
-import { LoginButton, LogoutButton } from "@/components/auth_buttons";
+import { LoginButton, LogoutButton } from "@/src/components/auth_buttons";
 
 function Profile_Settings () {
     return (
