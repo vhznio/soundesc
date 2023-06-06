@@ -12,13 +12,9 @@ import { AiOutlineLoading } from 'react-icons/ai'
 
 import { signIn } from 'next-auth/react';
 
-
-
-
-
 interface FormValues {
-  Email: string;
-  Password: string;
+  email: string;
+  password: string;
 }
 
 function Signin() {
@@ -28,12 +24,12 @@ function Signin() {
 
   const formik = useFormik<FormValues>({
     initialValues: {
-      Email: '',
-      Password: '',
+      email: '',
+      password: '',
     },
     validationSchema: Yup.object({
-      Email: Yup.string().required('Required').email(),
-      Password: Yup.string().required('Required').min(8),
+      email: Yup.string().required('Required').email(),
+      password: Yup.string().required('Required').min(8),
     }),
     onSubmit
   })
@@ -41,15 +37,15 @@ function Signin() {
   async function onSubmit(values: any) {
     setLoader(true)
     const status = await signIn('credentials', {
-      Email: values.Email,
-      Password: values.Password,
+      email: values.email,
+      password: values.password,
       redirect: false,
       callbackUrl: '/dashboard'
     })
     if (!status?.error) {
       router.push('/dashboard')
     } else {
-      formik.errors.Password = "Email or password is incorrect."
+      formik.errors.password = "Email or password is incorrect."
       setLoader(false)
     }
   }
@@ -77,19 +73,19 @@ function Signin() {
               <input
                 type="email"
                 placeholder='Enter Email'
-                {...formik.getFieldProps('Email')}
+                {...formik.getFieldProps('email')}
                 autoFocus={true}
                 className='border w-full text-base px-2 py-1 focus:outline-none focus:ring-0 focus:border-gray-600' />
-              {formik.errors.Email && formik.touched.Email ? <span className='text-red-500'>{formik.errors.Email}</span> : <></>}
+              {formik.errors.email && formik.touched.email ? <span className='text-red-500'>{formik.errors.email}</span> : <></>}
             </div>
             <div className='mt-3'>
               <label className='block text-base mb-2 text-center'>Password</label>
               <input
                 type="password"
                 placeholder='Enter Password'
-                {...formik.getFieldProps('Password')}
+                {...formik.getFieldProps('password')}
                 className='border w-full text-base px-2 py-1 focus:outline-none focus:ring-0 focus:border-gray-600' />
-              {formik.errors.Password && formik.touched.Password ? <span className='text-red-500'>{formik.errors.Password}</span> : <></>}
+              {formik.errors.password && formik.touched.password ? <span className='text-red-500'>{formik.errors.password}</span> : <></>}
             </div>
             <div className='mt-10 flex justify-end items-center'>
               <div>

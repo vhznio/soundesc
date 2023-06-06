@@ -9,9 +9,9 @@ import * as Yup from 'yup'
 import Link from 'next/link';
 
 interface FormValues {
-  UserName: string;
-  Email: string;
-  Password: string;
+  name: string;
+  email: string;
+  password: string;
   cpassword: string | null;
   conditions: boolean;
 }
@@ -23,16 +23,16 @@ function Register() {
   
   const formik = useFormik<FormValues>({
     initialValues: {
-      UserName:'',
-      Email:'',
-      Password:'',
+      name:'',
+      email:'',
+      password:'',
       cpassword:'',
       conditions: false
     }, 
     validationSchema: Yup.object({
-      UserName: Yup.string().required().max(10),
-      Email: Yup.string().required('Email Required').email(),
-      Password: Yup.string()
+      name: Yup.string().required().max(10),
+      email: Yup.string().required('Email Required').email(),
+      password: Yup.string()
       .required('No password provided.') 
       .min(8, 'Password is too short - should be 8 chars minimum.')
       .matches(
@@ -40,7 +40,7 @@ function Register() {
         "Password must contain at least 8 characters, one uppercase, one number and one special case character"
       ),
       cpassword: Yup.string()
-      .oneOf([Yup.ref('Password')], 'Passwords must match')
+      .oneOf([Yup.ref('password')], 'Passwords must match')
     }),
     onSubmit
   })
@@ -49,9 +49,9 @@ function Register() {
     const req = await fetch('api/users',{
       method: 'POST',
       body: JSON.stringify({
-        UserName: values.UserName,
-        Email: values.Email,
-        Password: values.Password
+        name: values.name,
+        email: values.email,
+        password: values.password
       }),
       headers: {
         'Content-Type': 'application/json'
@@ -74,37 +74,37 @@ function Register() {
           <hr className='mt-3' />
           <form onSubmit={formik.handleSubmit}>
             <div className='mt-3'>
-              <label className='block text-base mb-2 '>Username</label>
+              <label className='block text-base mb-2 '>UserName</label>
               <input
                 type="text"
-                placeholder='Enter Username'
-                {...formik.getFieldProps('UserName')}
+                placeholder='Enter UserName'
+                {...formik.getFieldProps('name')}
                 className='border w-full text-base px-2 py-1 focus:outline-none focus:ring-0 focus:border-gray-600' />
-                {formik.errors.UserName && formik.touched.UserName ? <span className='text-rose-500'>{formik.errors.UserName}</span> : <></>}
+                {formik.errors.name && formik.touched.name ? <span className='text-rose-500'>{formik.errors.name}</span> : <></>}
             </div>
             <div className='mt-3'>
               <label className='block text-base mb-2 '>Email</label>
               <input
                 type="email"
                 placeholder='Enter Email'
-                {...formik.getFieldProps('Email')}
+                {...formik.getFieldProps('email')}
                 className='border w-full text-base px-2 py-1 focus:outline-none focus:ring-0 focus:border-gray-600' />
-                {formik.errors.Email && formik.touched.Email ? <span className='text-rose-500'>{formik.errors.Email}</span> : <></>}
+                {formik.errors.email && formik.touched.email ? <span className='text-rose-500'>{formik.errors.email}</span> : <></>}
             </div>
             <div className='mt-3'>
-              <label className='block text-base mb-2 '>Password</label>
+              <label className='block text-base mb-2 '>password</label>
               <input
                 type="password"
-                placeholder='Enter Password'
-                {...formik.getFieldProps('Password')}
+                placeholder='Enter password'
+                {...formik.getFieldProps('password')}
                 className='border w-full text-base px-2 py-1 focus:outline-none focus:ring-0 focus:border-gray-600' />
-                {formik.errors.Password && formik.touched.Password ? <span className='text-rose-500'>{formik.errors.Password}</span> : <></>}
+                {formik.errors.password && formik.touched.password ? <span className='text-rose-500'>{formik.errors.password}</span> : <></>}
             </div>
             <div className='mt-3'>
-              <label className='block text-base mb-2 '>Confirm Password</label>
+              <label className='block text-base mb-2 '>Confirm password</label>
               <input
                 type="password"
-                placeholder='Enter Password'
+                placeholder='Enter password'
                 {...formik.getFieldProps('cpassword')}
                 className='border w-full text-base px-2 py-1 focus:outline-none focus:ring-0 focus:border-gray-600' />
                 {formik.errors.cpassword && formik.touched.cpassword ? <span className='text-rose-500'>{formik.errors.cpassword}</span> : <></>}
@@ -127,7 +127,7 @@ function Register() {
                 type="submit"
                 disabled={!isChecked}
                 className={
-                !isChecked || !formik.values.UserName || !formik.values.Email || !formik.values.Password || !formik.values.cpassword || formik.errors.cpassword == "Password Not Match...!" ? 
+                !isChecked || !formik.values.name || !formik.values.email || !formik.values.password || !formik.values.cpassword || formik.errors.cpassword == "password Not Match...!" ? 
                 "border-2 mt-3 text-xlborder-indigo-200 bg-green-300 text-white py-1 w-full rounded-md"
                 : 
                 "border-2 mt-3 text-xlborder-indigo-200 bg-green-600 text-white py-1 w-full rounded-md hover:bg-transparent hover:bg-green-200 hover:text-black hover:border-green-500"

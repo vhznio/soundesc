@@ -13,19 +13,19 @@ export const authOptions: NextAuthOptions = {
                 password: { label: "Password", type: "password" } 
             },
             async authorize(credentials, ) {
-                const { Email, Password }:any = credentials;
+                const { email, password }:any = credentials;
 
                 const result = await prisma.user.findUnique({
                     where: {
-                      Email
+                      email
                     }
                 })
 
                 if(!result){
                     throw new Error("No user found")
                 }
-                const checkPassword = await bcrypt.compare(Password, result.Password as any)             
-                if(!checkPassword || Email !== result.Email){
+                const checkPassword = await bcrypt.compare(password, result.password as any)             
+                if(!checkPassword || email !== result.email){
                     const error = new Error("Email or password doesn't match")
                     throw error
                 }
@@ -42,6 +42,8 @@ export const authOptions: NextAuthOptions = {
     callbacks: {
         async session({ session, token }) {
             session.user.uid = token.sub
+            session.user.name = token.name
+            session.user.email = token.email
             return session;
         },
     }

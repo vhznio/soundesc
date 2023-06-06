@@ -8,28 +8,28 @@ import { FormEvent, useState } from 'react';
 
 
 type AlbumForm= {
-    Name: string,
-    Author: string,
-    Cover: any,
-    ReleaseDate: string,
-    Tracks: Track[]
+    name: string,
+    author: string,
+    cover: any,
+    releaseDate: string,
+    tracks: Track[]
 }
 
 type Track = {
-    Name: string;
-    Tags: string;
-    File: any;
+    name: string;
+    tags: string;
+    file: any;
 }
 
 const InitialData: AlbumForm = {
-    Name: '',
-    Author: '',
-    Cover: undefined,
-    ReleaseDate: '',
-    Tracks: [{
-        Name:'',
-        Tags: '',
-        File: undefined
+    name: '',
+    author: '',
+    cover: undefined,
+    releaseDate: '',
+    tracks: [{
+        name:'',
+        tags: '',
+        file: undefined
     }]
 }
 
@@ -67,13 +67,13 @@ function Add() {
         next()
 
         const formData = new FormData();
-        formData.append('Author', data.Author);
-        formData.append('Name', data.Name);
-        formData.append('ReleaseDate', data.ReleaseDate);
-        formData.append('Cover', data.Cover);
+        formData.append('author', data.author);
+        formData.append('name', data.name);
+        formData.append('releaseDate', data.releaseDate);
+        formData.append('cover', data.cover);
 
-        data.Tracks.forEach((track, i) => {
-            formData.append(track.Name, track.File)
+        data.tracks.forEach((track, i) => {
+            formData.append(track.name, track.file)
         })
 
         fetch('/api/upload', {
@@ -101,10 +101,10 @@ function Add() {
                             </button>
                             <button 
                             type='button'
-                            onClick={() => !data.Cover ? '' : next()}
+                            onClick={() => !data.cover ? '' : next()}
                             className={`
                             ${currentStepIndex > 1 ? 'hidden' : ''} 
-                            ${!data.Cover ? 'bg-gray-700 cursor-auto rounded-full p-2' : 'dashboard_create_album_buttons'}`
+                            ${!data.cover ? 'bg-gray-700 cursor-auto rounded-full p-2' : 'dashboard_create_album_buttons'}`
                             }>
                                 Next
                             </button>

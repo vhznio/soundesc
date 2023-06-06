@@ -1,4 +1,4 @@
-import MusicPlayer from '@/components/music_player';
+import MusicPlayer from '@/src/components/music_player';
 import React from 'react';
 ;
 

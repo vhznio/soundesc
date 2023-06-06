@@ -24,16 +24,16 @@ export default async function Music() {
                 <Link href={`/dashboard/music/${item.id}`}>
                   <Image
                     className="rounded-lg w-auto h-auto"
-                    src={item.Cover!}
-                    alt={item.Name}
+                    src={item.cover!}
+                    alt={item.name}
                     priority={true}
                     width={350}
                     height={350}
                   />
 
                   <div className="flex flex-col w-full p-5 justify-center items-center">
-                    <p className="text-xl font-bold">{`${item.Name} - ${item.Author}`}</p>
-                    <p className=" text-gray-800 dark:text-indigo-500">{item.ReleaseDate}</p>
+                    <p className="text-xl font-bold">{`${item.name} - ${item.author}`}</p>
+                    <p className=" text-gray-800 dark:text-indigo-500">{item.releaseDate}</p>
                   </div>
                 </Link>
               </div>

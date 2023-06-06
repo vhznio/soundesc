@@ -7,6 +7,8 @@ import { useState } from "react";
 import { IoLogoElectron } from 'react-icons/io5'
 import { RiMenu4Fill } from "react-icons/ri";
 import { TbMessageCircle2 } from "react-icons/tb";
+import { MdBookmarkBorder } from 'react-icons/md'
+import { IoMdStarOutline } from 'react-icons/io'
 import { AiOutlineHeart, AiOutlineShopping } from "react-icons/ai";
 import { FiMusic } from "react-icons/fi";
 import { MdClose } from "react-icons/md";
@@ -31,7 +33,7 @@ const Dashboard_Sidebar = ({ children }: {
       ] 
     },
     { name: "Messages", link: "/dashboard/messages", icon: TbMessageCircle2 },
-    { name: "Favorites", link: "/dashboard/favorites", icon: AiOutlineHeart },
+    { name: "Favorites", link: "/dashboard/favorites", icon: IoMdStarOutline },
     { name: "Store", link: "/dashboard/store", icon: AiOutlineShopping, margin: true },
   ];
 

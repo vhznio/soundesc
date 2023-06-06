@@ -1,9 +1,9 @@
 
 type AlbumData = {
-    Name: string,
-    Author: string,
-    Cover: any,
-    ReleaseDate: string
+    name: string,
+    author: string,
+    cover: any,
+    releaseDate: string
 }
 
 type AlbumFormProps = AlbumData & {
@@ -11,10 +11,10 @@ type AlbumFormProps = AlbumData & {
 }
 
 
-function Album_Data ({Name, Author, ReleaseDate, UpdateFields} : AlbumFormProps ){
+function Album_Data ({name, author, releaseDate, UpdateFields} : AlbumFormProps ){
 
     const handleCover = (value: any) => {
-       UpdateFields({Cover: value})
+       UpdateFields({cover: value})
     }
 
     return(
@@ -24,10 +24,10 @@ function Album_Data ({Name, Author, ReleaseDate, UpdateFields} : AlbumFormProps 
                 <input
                     type="text"
                     placeholder='Enter Author Name'
-                    value={Author}
+                    value={author}
                     required
                     autoFocus={true}
-                    onChange={e => UpdateFields({ Author: e.target.value })}
+                    onChange={e => UpdateFields({ author: e.target.value })}
                     className='text-indigo-200 border w-full text-base px-2 py-1 rounded-lg
                     focus:outline-none focus:ring-0 focus:border-gray-600' 
                 />
@@ -38,8 +38,8 @@ function Album_Data ({Name, Author, ReleaseDate, UpdateFields} : AlbumFormProps 
                 <input
                     type="text"
                     placeholder='Enter Album Name'
-                    value={Name}
-                    onChange={e => UpdateFields({ Name: e.target.value})}
+                    value={name}
+                    onChange={e => UpdateFields({ name: e.target.value})}
                     className='text-indigo-200 border w-full text-base px-2 py-1 rounded-lg
                     focus:outline-none focus:ring-0 focus:border-gray-600' 
                 />
@@ -50,8 +50,8 @@ function Album_Data ({Name, Author, ReleaseDate, UpdateFields} : AlbumFormProps 
                 <input
                     type="text"
                     placeholder='Enter Release Date'
-                    value={ReleaseDate}
-                    onChange={e => UpdateFields({ ReleaseDate: e.target.value})}
+                    value={releaseDate}
+                    onChange={e => UpdateFields({ releaseDate: e.target.value})}
                     className='text-indigo-200 border w-full text-base px-2 py-1 rounded-lg
                     focus:outline-none focus:ring-0 focus:border-gray-600' 
                 />

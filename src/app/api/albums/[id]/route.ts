@@ -16,10 +16,10 @@ export async function GET(req: NextRequest) {
       userId: id
     },
     select: {
-      Name: true,
-      Author: true,
-      ReleaseDate: true,
-      Cover: true,
+      name: true,
+      author: true,
+      releaseDate: true,
+      cover: true,
       id: true
     }
   })

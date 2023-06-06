@@ -9,15 +9,15 @@ export async function POST( request: Request ){
   const body = await request.json();
   
   const {
-    UserName,
-    Email,
-    Albums
+    name,
+    email,
+    albums
   } = body;
-  const Password= await bcrypt.hash(body.Password,12);
+  const password= await bcrypt.hash(body.password,12);
 
   const existingUser = await prisma.user.findUnique({
     where: {
-      Email,
+      email,
     }
   })
 
@@ -27,15 +27,15 @@ export async function POST( request: Request ){
 
   const user = await prisma.user.create({
     data: {
-      UserName,
-      Email,
-      Password,
-      Albums: {
-        create: Albums
+      name,
+      email,
+      password,
+      albums: {
+        create: albums
       }
     },
     include: {
-      Albums: true
+      albums: true
     }
   });
   
@@ -45,7 +45,7 @@ export async function POST( request: Request ){
 export async function GET(request: Request) {
   const users = await prisma.user.findMany({
     include: {
-      Albums:true
+      albums:true
     }
   })
   
