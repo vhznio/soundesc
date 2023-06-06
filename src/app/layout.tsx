@@ -9,7 +9,7 @@ const tech = Share_Tech_Mono({
 })
 
 export const metadata = {
-  title: '{LitNyo}',
+  title: 'soundesc',
   description: 'Music App',
 }
 
