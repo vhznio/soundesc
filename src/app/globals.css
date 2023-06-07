@@ -30,8 +30,9 @@
 
     .dashboard_header_container {
       @apply 
-      flex justify-between p-3 items-center select-none h-16
-      bg-gray-400 
+      flex justify-between p-3 
+      items-center select-none h-16
+      bg-gray-400
       dark:bg-gray-900; 
     }
 

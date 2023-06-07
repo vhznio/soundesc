@@ -1,20 +1,17 @@
 'use client'
 
 import Link from "next/link"
-import Image from "next/image"
 import { useState } from "react";
 
 import { IoLogoElectron } from 'react-icons/io5'
 import { RiMenu4Fill } from "react-icons/ri";
 import { TbMessageCircle2 } from "react-icons/tb";
-import { MdBookmarkBorder } from 'react-icons/md'
 import { IoMdStarOutline } from 'react-icons/io'
-import { AiOutlineHeart, AiOutlineShopping } from "react-icons/ai";
+import { AiOutlineShopping } from "react-icons/ai";
 import { FiMusic } from "react-icons/fi";
 import { MdClose } from "react-icons/md";
 
 import Dashboard_Header from "./dashboard_header";
-import MusicPlayer from "./music_player";
 
 const Dashboard_Sidebar = ({ children }: {
   children: React.ReactNode
@@ -96,10 +93,14 @@ const Dashboard_Sidebar = ({ children }: {
           </div>
         </div>
       </div>
-      <main className={`${open ? 'ml-20 w-full flex flex-col h-screen' : 'ml-40 lg:ml-72 w-full flex flex-col h-screen'}`}>
+      <main 
+      className={
+        `${open ? 'ml-20 w-full flex flex-col h-screen' 
+        : 
+        'ml-40 lg:ml-72 w-full flex flex-col h-screen'}`
+        }>
         <Dashboard_Header />
         {children}
-        {/* <MusicPlayer/> */}
       </main>
     </div>
   )

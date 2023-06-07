@@ -19,6 +19,7 @@ const Post = ({item}:any) => {
     const [like, setLike] = useState(false);
     const [fav, setFav] = useState(false);
 
+
     const handleDropMenu = () => {
         setDropMenu(!dropMenu)
     }
@@ -48,7 +49,8 @@ const Post = ({item}:any) => {
                         className="w-10 h-10 rounded-full object-cover"
                         src={'/etc/profile.jpg'}
                         alt={'x'}
-                        priority={true}
+                        placeholder="blur"
+                        blurDataURL="/etc/profile.jpg"
                         width={500}
                         height={500}
                     />
@@ -89,11 +91,12 @@ const Post = ({item}:any) => {
                             <AiFillPlayCircle size={75}/>
                         </Link>
                     </div>
-                    <Image
+                    <Image 
                         className={`object-cover h-auto w-auto ${toPlay? 'blur-sm opacity-75 z-10': ''}`}
                         src={item.cover}
                         alt={''}
-                        priority={true}
+                        placeholder="blur"
+                        blurDataURL={item.cover}
                         width={550}
                         height={600}
                     />

@@ -5,6 +5,7 @@ import Album_Data from '@/src/components/multi_step_form/album_data';
 import Album_Tracks from '@/src/components/multi_step_form/album_tracks';
 import Album_Succesfully from '@/src/components/multi_step_form/album_succesfully';
 import { FormEvent, useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 
 type AlbumForm= {
@@ -34,6 +35,7 @@ const InitialData: AlbumForm = {
 }
 
 function Add() {
+    const router = useRouter();
     const [data, setData ] = useState(InitialData);
     
     function UpdateFields(fields: Partial<AlbumForm>){
@@ -79,6 +81,11 @@ function Add() {
         fetch('/api/upload', {
             method: 'POST',
             body: formData
+        }).then((res) => {
+            if(res.ok){
+              alert(JSON.stringify("Successful registration!", null, 2));
+              router.push('/dashboard/music')
+            }
         })
     }
 

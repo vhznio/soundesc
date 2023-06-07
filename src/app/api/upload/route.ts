@@ -82,20 +82,20 @@ export async function POST(req: NextRequest) {
       const trackBuffer = await value.arrayBuffer();
       const buffer = Buffer.from(trackBuffer);
 
-      const trackPath = path.join(albumPath, trackName + extension).replace(/\s+/g, '_')
+      const trackPath = path.join(albumPath, trackName + extension).replace(/\s+/g, '_');
+      const trackShortPath = `/uploads/${id}/${name}/${trackName}${extension}`.replace(/\s+/g, '_')
       ALBUM_TO_POST.tracks.push(
         {
           name: trackName,
           tags: '',
-          file: trackPath
+          file: trackShortPath
         }
       )
-      await fs.writeFile(trackPath, buffer);
       
+      await fs.writeFile(trackPath, buffer);
     }
   }
 
-  console.log(ALBUM_TO_POST)
   const newAlbum = await prisma.album.create({
     data: {
       ...ALBUM_TO_POST,
