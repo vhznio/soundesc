@@ -13,6 +13,7 @@ export async function GET(req: Request) {
       cover: true,
       releaseDate: true,
       createdAt: true,
+      tracks: true,
       user:{
         select:{
           name: true

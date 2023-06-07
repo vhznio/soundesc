@@ -7,6 +7,26 @@ import { NextApiRequest } from "next";
 import { promises as fs } from 'fs';
 import path from 'path';
 
+
+type AlbumType= {
+  name: string,
+  author: string,
+  cover: any,
+  releaseDate: string,
+  tracks: Track[]
+  user: {
+    connect : {
+      id: string
+    }
+  }
+}
+
+type Track = {
+    name: string;
+    tags: string;
+    file: any;
+}
+
 export async function POST(req: NextRequest) {
 
   const form:any = await req.formData();
@@ -34,33 +54,20 @@ export async function POST(req: NextRequest) {
   await fs.mkdir(albumPath, { recursive: true });
 
   const coverShortPath = `/uploads/${id}/${name}/${name}-${author}.${fields.cover.type.split('/').pop()}`.replace(/\s+/g, '_');
-  
 
-
-  var ALBUM_TO_POST = {
+  var ALBUM_TO_POST:AlbumType = {
     name: name,
     author: author,
     cover: coverShortPath,
     releaseDate: releaseDate,
-    tracks: {
-      create: [
-        {
-          name: '',
-          tags: '',
-          file: ''
-        }
-      ]
-    },
+    tracks: [],
     user: {
       connect: {
-        id
+        id: id!
       }
     }
   }
-
-
-  Object.entries(fields).forEach( async ([key, value]) => {
-    
+  for (const [key, value] of Object.entries(fields)) {
     if (key === 'cover') {
       const imageBuffer = await value.arrayBuffer();
       const buffer = Buffer.from(imageBuffer);
@@ -69,7 +76,6 @@ export async function POST(req: NextRequest) {
       const coverPath = path.join(albumPath, coverName + extension).replace(/\s+/g, '_');
       await fs.writeFile(coverPath, buffer);
     }
-
     if(key !== 'cover' && key !== 'author' && key !== 'name' && key !== 'releaseDate'){
       const trackName = value.name.split('.').shift()
       const extension = `.${value.name.split('.').pop()}`
@@ -77,16 +83,27 @@ export async function POST(req: NextRequest) {
       const buffer = Buffer.from(trackBuffer);
 
       const trackPath = path.join(albumPath, trackName + extension).replace(/\s+/g, '_')
+      ALBUM_TO_POST.tracks.push(
+        {
+          name: trackName,
+          tags: '',
+          file: trackPath
+        }
+      )
       await fs.writeFile(trackPath, buffer);
-     
+      
     }
-
-  })
+  }
 
   console.log(ALBUM_TO_POST)
   const newAlbum = await prisma.album.create({
-    data: ALBUM_TO_POST
+    data: {
+      ...ALBUM_TO_POST,
+      tracks: {
+        create: ALBUM_TO_POST.tracks
+      }
+    }
   })
-  
-  return NextResponse.json({});
+
+  return NextResponse.json(newAlbum);
 }

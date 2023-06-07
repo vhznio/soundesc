@@ -104,7 +104,7 @@ function Album_Tracks ({tracks, UpdateFields} : AlbumFormProps ) {
                             <td className="border border-gray-500 p-1 w-1/4">
                                 <input
                                     type="file"
-                                    accept=".mp3, .wav"
+                                    accept=".mp3, .wav, .mp4, .webm"
                                     className='
                                     file:bg-black  
                                     file:rounded-md  
