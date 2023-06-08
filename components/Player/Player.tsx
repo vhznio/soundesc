@@ -5,14 +5,13 @@ import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 import { useEffect, useRef, useState } from "react";
 import {
-  TbArrowsShuffle2,
+  TbArrowsShuffle,
   TbPlayerPause,
   TbPlayerPlay,
   TbPlayerSkipBack,
   TbPlayerSkipForward,
-  TbVolume,
-  TbVolume3,
 } from "react-icons/tb";
+import {BiVolumeMute, BiVolumeFull, BiVolumeLow} from "react-icons/bi"
 import { DefaultThumbnail } from "./DefaultThumbnail";
 import { usePlayer } from "./usePlayer";
 import { secondsToMinutes } from "./utils";
@@ -119,7 +118,7 @@ export const Player = () => {
       <div className="w-full py-4 bg-indigo-950/80 backdrop-blur-2xl rounded-t-[2rem] text-white shadow-xl shadow-indigo-500">
         <div className="flex max-[600px]:flex-col container mx-full px-3 lg:px-3 flex justify-between">
           {/* title and thumbnail */}
-          <div className="flex items-stretch lg:w-3/12 gap-4">
+          <div className="flex items-stretch lg:w-3/12 gap-5">
             <div className="w-14 h-14 lg:flex-shrink-0">
               {currentMusic.thumbnail ? (
                 <img
@@ -186,10 +185,10 @@ export const Player = () => {
             </div>
           </div>
           {/* settings */}
-          <div className="flex justify-end gap-4 lg:w-1/12">
+          <div className="flex justify-center gap-3 lg:w-2/12">
             <div className="relative flex items-center h-full" ref={volumeRef}>
               {isVolumeOpen && (
-                <div className="flex absolute -top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 shadow-sm shadow-white w-8 h-20 rounded-lg overflow-hidden bg-neutral-100 py-4 justify-center">
+                <div className="flex absolute -top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 shadow-sm shadow-white w-8 h-20 rounded-xl overflow-hidden bg-neutral-100 py-4 justify-center">
                   <Slider
                     vertical
                     min={0}
@@ -203,22 +202,24 @@ export const Player = () => {
                 </div>
               )}
               <button onClick={() => setIsVolumeOpen(!isVolumeOpen)}>
-                {volume === 0 ? (
-                  <TbVolume3 size={20} />
-                ) : (
-                  <TbVolume size={20} />
-                )}
+              if (volume === 0) {
+              <BiVolumeMute size={20} />}
+              else if (volume == 50) {
+              <BiVolumeLow size={20} />
+              } else {
+              <BiVolumeFull size={20} />
+              }
               </button>
-            </div>
-            <button onClick={() => setIsRandom(!isRandom)}>
-              <TbArrowsShuffle2
+              </div>
+              <button onClick={() => setIsRandom(!isRandom)}>
+              <TbArrowsShuffle
                 size={20}
-                color={isRandom ? "rgb(126 34 206)" : ""}
+                color={isRandom ? "rgb(64 64 64)" : ""}
               />
             </button>
           </div>
         </div>
       </div>
     </div>
-  );
+    );
 };
