@@ -12,6 +12,7 @@ import { FiMusic } from "react-icons/fi";
 import { MdClose } from "react-icons/md";
 
 import Dashboard_Header from "./dashboard_header";
+import { PlayerProvider } from "@/components/Player";
 
 const Dashboard_Sidebar = ({ children }: {
   children: React.ReactNode
@@ -93,22 +94,11 @@ const Dashboard_Sidebar = ({ children }: {
           </div>
         </div>
       </div>
-<<<<<<< HEAD:components/dashboard_sidebar.tsx
       <main className={`${open ? 'ml-20 w-full flex flex-col h-screen' : 'ml-40 lg:ml-72 w-full flex flex-col h-screen'}`}>
       <Dashboard_Header />
       <PlayerProvider>
         {children}
         </PlayerProvider>
-=======
-      <main 
-      className={
-        `${open ? 'ml-20 w-full flex flex-col h-screen' 
-        : 
-        'ml-40 lg:ml-72 w-full flex flex-col h-screen'}`
-        }>
-        <Dashboard_Header />
-        {children}
->>>>>>> a1ebe80818c2aee1b00bf0a8df8ddaf02712509a:src/components/dashboard_sidebar.tsx
       </main>
     </div>
   )
