@@ -1,19 +1,17 @@
 import prisma from "../../../../lib/prisma";
 import { NextApiRequest, NextApiResponse } from "next";
+import { getServerSession } from "next-auth";
 import { NextRequest, NextResponse } from 'next/server';
+import { authOptions } from "../../auth/[...nextauth]/route";
 
 
 
 export async function GET(req: NextRequest) {
-  const id = req.url.split('/').pop();
-
-  if(!id){
-    throw new Error("No hay id de session")
-  }
+  const session = await getServerSession(authOptions);
 
   const albums = await prisma.album.findMany({
     where: {
-      userId: id
+      userId: session?.user.uid!
     },
     select: {
       name: true,

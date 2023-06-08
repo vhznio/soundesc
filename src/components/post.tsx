@@ -12,12 +12,15 @@ import { TbSend } from 'react-icons/tb'
 import { TfiMore } from 'react-icons/tfi'
 
 import { useState } from "react";
+import { Suspense } from "react";
 
 const Post = ({item}:any) => {
     const [toPlay, setToPlay] = useState(false);
     const [dropMenu, setDropMenu] = useState(false);
     const [like, setLike] = useState(false);
     const [fav, setFav] = useState(false);
+
+    const [likeCount, setLikeCount] = useState(1);
 
 
     const handleDropMenu = () => {
@@ -26,6 +29,9 @@ const Post = ({item}:any) => {
 
     const handleLikes = () => {
         setLike(!like)
+        like ? setLikeCount((prev) => prev + 1) : setLikeCount((prev) => prev - 1)
+        
+        console.log(likeCount)
         console.log(item)
     }
 
@@ -91,15 +97,17 @@ const Post = ({item}:any) => {
                             <AiFillPlayCircle size={75}/>
                         </Link>
                     </div>
-                    <Image 
-                        className={`object-cover h-auto w-auto ${toPlay? 'blur-sm opacity-75 z-10': ''}`}
-                        src={item.cover}
-                        alt={''}
-                        placeholder="blur"
-                        blurDataURL={item.cover}
-                        width={550}
-                        height={600}
-                    />
+                    <div className="flex justify-center items-center">
+                        <Image 
+                            className={`object-cover rounded-md h-auto w-auto md:max-w-lg ${toPlay? 'blur-sm opacity-75 z-10': ''}`}
+                            src={item.cover}
+                            alt={''}
+                            placeholder="blur"
+                            blurDataURL={item.cover}
+                            width={450}
+                            height={450}
+                        />
+                    </div>
                 </div>
             </div>
             

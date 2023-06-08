@@ -1,7 +1,6 @@
 'use client'
 
-import { data } from 'autoprefixer'
-import { UseSessionOptions, useSession } from 'next-auth/react'
+import { useSession } from 'next-auth/react'
 import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import { CgProfile } from 'react-icons/cg'

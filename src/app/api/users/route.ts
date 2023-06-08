@@ -3,6 +3,7 @@ import { NextResponse } from "next/server"
 import bcrypt from 'bcrypt';
 import { notFound } from 'next/navigation';
 import prisma from "../../../lib/prisma";
+import Albums from "../../dashboard/albums/page";
 
 
 export async function POST( request: Request ){
@@ -44,8 +45,8 @@ export async function POST( request: Request ){
 
 export async function GET(request: Request) {
   const users = await prisma.user.findMany({
-    include: {
-      albums:true
+    select: {
+      name: true
     }
   })
   
