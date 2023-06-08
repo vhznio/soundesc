@@ -1,0 +1,172 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .body {
+      @apply 
+      bg-gray-500
+      dark:bg-gray-800 
+      min-h-screen overflow-hidden;
+    }
+
+    .navbar_header_button {
+      @apply 
+      cursor-pointer m-2 px-5 py-2 inline-block rounded-full shadow-lg shadow-emerald-500/50 
+      hover:text-indigo-300 hover:bg-slate-900 hover:rounded-xl hover:shadow-lg hover:shadow-indigo-500/50
+      bg-gray-900 text-emerald-400 text-xl font-bold font-mono hover:animate-pulse
+      transition-all duration-100 ease-linear
+    }
+
+    .navbar_menu_open_container {
+      @apply cursor-pointer flex m-7 px-5 py-3 rounded-full shadow-lg shadow-blue-400/50 items-center justify-center gap-4
+      hover:text-indigo-500 hover:bg-slate-900 hover:rounded-lg hover:shadow-lg hover:shadow-indigo-400/50 
+      bg-gray-900 text-blue-600 text-2xl font-bold font-mono hover:animate-pulse
+    }
+
+    .icon_menu_open{
+     @apply text-center align-middle;
+    }
+
+    .dashboard_header_container {
+      @apply 
+      flex justify-between p-3 
+      items-center select-none h-16
+      bg-gray-400
+      dark:bg-gray-900; 
+    }
+
+    .dashboard_header_title {
+      @apply 
+      flex items-center font-bold text-lg ml-5
+      text-black
+      dark:text-indigo-500;
+    }
+
+    .dashboard_header_theme_switcher {
+      @apply 
+      cursor-pointer p-2 inline-block rounded-full  
+      hover:text-white hover:bg-black hover:rounded-xl
+      bg-gray-500 text-emerald-400
+      dark:bg-gradient-to-r dark:from-indigo-700 dark:to-slate-900  
+      transition-all duration-75 ease-linear;
+    }
+
+    .dashboard_header_profile_button {
+      @apply 
+      cursor-pointer p-1 inline-block rounded-full
+      hover:text-white hover:bg-black hover:rounded-xl
+      bg-gray-500 text-emerald-400
+      dark:bg-gradient-to-r dark:from-indigo-700 dark:to-slate-900 
+      transition-all duration-75 ease-linear ;
+    }
+
+    .dashboard_sidebar{
+      @apply 
+      fixed h-screen p-4 flex flex-col justify-between 
+      border-indigo-800 border-r-[1px] select-none
+      bg-gray-400
+      dark:bg-gray-900; 
+    }
+
+    .dashboard_sidebar_logo {
+      @apply 
+      inline-block p-2 rounded-lg 
+      bg-gray-500 hover:text-white
+      dark:bg-indigo-500 dark:hover:text-green-500;
+    }
+    
+    .dashboard_sidebar_menu_button_container {
+      @apply p-3 inline-block rounded-lg;
+    }
+    
+    .dashboard_sidebar_menu_button {
+      @apply  
+      cursor-pointer
+      text-black
+      dark:text-indigo-400 
+      transition hover:rotate-180 ease-in-out duration-500;
+    }
+
+    .close_dashboard_sidebar_buttons {
+      @apply 
+      flex items-center justify-center p-3 mx-auto rounded-3xl cursor-pointer
+      hover:text-white hover:bg-black hover:rounded-xl
+      bg-gray-500 text-emerald-400
+      dark:bg-gradient-to-l dark:from-indigo-700 dark:to-gray-900 
+      transition-all duration-75 ease-linear;
+    }
+
+    .open_dashboard_sidebar_buttons {
+      @apply 
+      items-center grid grid-cols-2 p-3 mx-auto w-full
+      bg-gray-500 rounded-lg  text-emerald-400 rounded-b-xl rounded-t-xl
+      dark:bg-gradient-to-r dark:from-gray-900 dark:via-indigo-700 dark:to-gray-900 
+      transition-all duration-75 ease-linear ;
+    }
+
+    .dashboard_albums_container {
+      @apply grid gap-8 p-14
+      sm:grid-cols-1
+      md:grid-cols-2
+      lg:grid-cols-4 ;
+    }
+
+    .dashboard_album {
+      @apply lg:col-span-1 rounded-lg
+      border-gray-400 backdrop-blur-sm backdrop-brightness-150
+      shadow-lg hover:shadow-black dark:hover:shadow-indigo-400
+      flex justify-center w-full p-5;
+    }
+
+    .dashboard_create_album_form {
+      @apply flex flex-col justify-center 
+      mx-auto max-w-2xl md:max-w-3xl 
+
+      p-10 border mt-5 border-gray-700 
+      rounded-md md:border-indigo-600 md:shadow-md md:shadow-indigo-400 backdrop-blur-lg backdrop-brightness-110;
+    }
+
+    .dashboard_feed_container {
+      @apply flex flex-col justify-center mx-auto max-w-2xl ;
+    }
+
+    .dashboard_feed_post {
+      @apply flex flex-col p-3 gap-8 m-5 rounded-md bg-gray-400
+      border border-indigo-500 shadow-md shadow-black;
+    }
+    .bgvideo_container{
+      @apply w-screen h-screen z-0;
+    }
+
+    .dashboard_create_album_buttons {
+      @apply p-2 rounded-3xl cursor-pointer
+      hover:text-white hover:bg-black hover:rounded-xl
+      bg-gray-500 text-emerald-400
+      dark:bg-gradient-to-l dark:from-indigo-700 dark:to-gray-900 
+      transition-all duration-75 ease-linear;
+    }
+}
+
+video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+*::-webkit-scrollbar {
+  width: 5px;               
+}
+
+
+*::-webkit-scrollbar-thumb {
+  background-color: rgb(0, 0, 0);    
+  border-radius: 20px;       
+  border: 1px solid rgba(0,255,0,0.3);  
+}
+
+input[type="text"], textarea {
+  border:none;
+  background-color : rgba(0,0,0,0.1); 
+}
+
