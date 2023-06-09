@@ -5,7 +5,7 @@ export async function GET(req: Request) {
   //Null Handler of users  
   const albums = await prisma.album.findMany({
     orderBy: {
-      createdAt: 'asc'
+      createdAt: 'desc'
     },
     select: {
       name: true,

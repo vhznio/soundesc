@@ -1,7 +1,5 @@
 'use client'
 
-import { Album } from "@prisma/client"
-import { useSession } from "next-auth/react"
 import Link from "next/link"
 import Image from 'next/image';
 
@@ -12,7 +10,6 @@ import { TbSend } from 'react-icons/tb'
 import { TfiMore } from 'react-icons/tfi'
 
 import { useState } from "react";
-import { Suspense } from "react";
 
 const Post = ({item}:any) => {
     const [toPlay, setToPlay] = useState(false);
@@ -22,7 +19,6 @@ const Post = ({item}:any) => {
 
     const [likeCount, setLikeCount] = useState(1);
 
-
     const handleDropMenu = () => {
         setDropMenu(!dropMenu)
     }
@@ -30,18 +26,11 @@ const Post = ({item}:any) => {
     const handleLikes = () => {
         setLike(!like)
         like ? setLikeCount((prev) => prev + 1) : setLikeCount((prev) => prev - 1)
-        
-        console.log(likeCount)
-        console.log(item)
     }
 
-    const handleComments = () => {
+    const handleComments = () => {}
 
-    }
-
-    const handleSends = () => {
-
-    }
+    const handleSends = () => {}
 
     const handleFavorites = () => {
         setFav(!fav)
@@ -102,8 +91,7 @@ const Post = ({item}:any) => {
                             className={`object-cover rounded-md h-auto w-auto md:max-w-lg ${toPlay? 'blur-sm opacity-75 z-10': ''}`}
                             src={item.cover}
                             alt={''}
-                            placeholder="blur"
-                            blurDataURL={item.cover}
+                            priority
                             width={450}
                             height={450}
                         />

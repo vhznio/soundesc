@@ -1,8 +1,8 @@
 function Messages(){
     return(
-        <div>
-            <div>MESSAGES</div>
-        </div>
+        <>
+            Messages
+        </>
     )
 }
 

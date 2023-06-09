@@ -2,7 +2,6 @@ import { NextRequest, NextResponse } from "next/server";
 import prisma from "../../../lib/prisma";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../auth/[...nextauth]/route";
-import { NextApiRequest } from "next";
 
 import { promises as fs } from 'fs';
 import path from 'path';
@@ -36,7 +35,6 @@ export async function POST(req: NextRequest) {
   const activeUser = await getServerSession(authOptions);
   const id = activeUser?.user.uid;
   
-
   const invalidData = await prisma.album.findUnique({
     where: {
       name

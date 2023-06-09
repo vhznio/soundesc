@@ -1,5 +1,7 @@
 export default function Albums() {
     return (
-        <div>Albums</div>
+        <>
+            <div>Albums</div>
+        </>
     )
 }
