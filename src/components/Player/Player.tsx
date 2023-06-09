@@ -115,7 +115,7 @@ export const Player = () => {
 
   return (
     <div className="fixed w-screen bottom-0">
-      <div className="w-full py-4 bg-indigo-950/80 backdrop-blur-2xl rounded-t-[2rem] text-white shadow-xl shadow-indigo-500">
+      <div className="w-full py-4 bg-gradient-to-r from-pink-500 to-indigo-400 dark:bg-gradient-to-l dark:from-indigo-950 dark:to-emerald-950 backdrop-blur-2xl rounded-t-[2rem] text-white shadow-xl shadow-indigo-500">
         <div className="flex max-[600px]:flex-col container mx-full px-3 lg:px-3 flex justify-between">
           {/* title and thumbnail */}
           <div className="flex items-stretch lg:w-3/12 gap-5">
@@ -132,7 +132,7 @@ export const Player = () => {
             </div>
             <div className="flex flex-col gap-2">
               <h6 className="text-sm font-semibold">{currentMusic.title}</h6>
-              <span className="text-xs text-gray-400">
+              <span className="text-xs text-gray-800 dark:text-gray-300">
                 {currentMusic.artist}
               </span>
             </div>
@@ -163,12 +163,12 @@ export const Player = () => {
             </button>
           </div>
           {/* progress */}
-          <div className=" md:flex w-6/12 flex-col gap-1 justify-center cursor-pointer hidden sm:visible">
+          <div className=" md:flex w-6/12 flex-col gap-1 justify-center cursor-pointer hidden xl:visible">
             <Slider
-              trackStyle={{ background: "rgb(126 34 206)" }}
+              trackStyle={{ background: "rgb(8 119 56)" }}
               handleStyle={{
-                border: "2px solid rgb(126 34 206)",
-                background: "rgb(126 34 206)",
+                border: "2px solid rgb(8 119 56)",
+                background: "rgb(0 0 0)",
                 boxShadow: "none",
                 opacity: 1,
               }}
