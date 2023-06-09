@@ -202,13 +202,11 @@ export const Player = () => {
                 </div>
               )}
               <button onClick={() => setIsVolumeOpen(!isVolumeOpen)}>
-              if (volume === 0) {
-              <BiVolumeMute size={20} />}
-              else if (volume == 50) {
-              <BiVolumeLow size={20} />
-              } else {
-              <BiVolumeFull size={20} />
-              }
+                {volume === 0 ? (
+                  <BiVolumeMute size={20} />
+                ) : (
+                  <BiVolumeFull size={20} />
+                )}
               </button>
               </div>
               <button onClick={() => setIsRandom(!isRandom)}>

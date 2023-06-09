@@ -12,7 +12,7 @@ import { FiMusic } from "react-icons/fi";
 import { MdClose } from "react-icons/md";
 
 import Dashboard_Header from "./dashboard_header";
-import { PlayerProvider } from "@/components/Player";
+import { PlayerProvider } from "./Player";
 
 const Dashboard_Sidebar = ({ children }: {
   children: React.ReactNode
@@ -96,7 +96,7 @@ const Dashboard_Sidebar = ({ children }: {
       </div>
       <main className={`${open ? 'ml-20 w-full flex flex-col h-screen' : 'ml-40 lg:ml-72 w-full flex flex-col h-screen'}`}>
       <Dashboard_Header />
-      <PlayerProvider>
+      <PlayerProvider>     
         {children}
         </PlayerProvider>
       </main>
